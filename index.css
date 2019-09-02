@@ -1,0 +1,27 @@
+body
+{
+    width: 70%;
+    margin: auto;
+}
+
+#root
+{
+    padding: 10px;
+    margin-top: 150px;
+    height: 400px;
+}
+
+#count
+{
+    position: relative;
+    top: 70px;
+    left: 40%;
+}
+
+button
+{
+    width: 100px;
+    position: relative;
+    left: 50%;
+    margin-bottom: 10px;
+}

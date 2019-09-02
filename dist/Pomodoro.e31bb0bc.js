@@ -118,69 +118,137 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"index.js":[function(require,module,exports) {
-'"use strict"';
+var m = 9;
+var s = 0;
+var clock = null;
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function sum() {
+  s = Number(s);
+  m = Number(m);
+  m++;
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-var e = React.createElement;
-
-var LikeButton =
-/*#__PURE__*/
-function (_React$Component) {
-  _inherits(LikeButton, _React$Component);
-
-  function LikeButton(props) {
-    var _this;
-
-    _classCallCheck(this, LikeButton);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(LikeButton).call(this, props));
-    _this.state = {
-      clicked: false
-    };
-    return _this;
+  if (m < 10) {
+    m = "0" + String(m);
+  } else {
+    m = String(m);
   }
 
-  _createClass(LikeButton, [{
-    key: "render",
-    value: function render() {
-      var _this2 = this;
+  if (s < 10) {
+    s = "0" + String(s);
+  } else {
+    s = String(s);
+  }
 
-      if (this.state.cliked) {
-        return "Hello world.";
-      }
+  document.querySelector("#count").textContent = m + " : " + s;
+}
 
-      return e("h1", {
-        onClick: function onClick() {
-          return _this2.setState({
-            cliked: true
-          });
-        }
-      }, "Click me.");
+function dec() {
+  s = Number(s);
+  m = Number(m);
+  m--;
+
+  if (m < 10) {
+    m = "0" + String(m);
+  } else {
+    m = String(m);
+  }
+
+  if (s < 10) {
+    s = "0" + String(s);
+  } else {
+    s = String(s);
+  }
+
+  document.querySelector("#count").textContent = m + " : " + s;
+}
+
+function base() {
+  var element = React.createElement("div", null, "// eslint-disable-next-line react/react-in-jsx-scope", React.createElement("span", {
+    id: "count"
+  }, " ", m, " : ", s, " "), React.createElement("div", {
+    id: "wrapBtn"
+  }, React.createElement("button", {
+    onClick: sum
+  }, "Plus"), React.createElement("br", null), React.createElement("button", {
+    onClick: start
+  }, "Play"), React.createElement("br", null), React.createElement("button", {
+    onClick: reset
+  }, "Reset"), React.createElement("br", null), React.createElement("button", {
+    onClick: dec
+  }, "Minus"), React.createElement("br", null)));
+  ReactDOM.render(element, document.querySelector("#root"));
+} // Init dom at this state
+
+
+base();
+
+function reset() {
+  document.querySelector("#count").textContent = "00:00";
+  clearInterval(clock);
+  s = 0;
+  m = 0;
+}
+
+function start() {
+  clock = setInterval(tick, 1000);
+}
+
+function showTime() {
+  m = Number(m);
+  s = Number(s);
+
+  if (m > 0 || s > 0) {
+    if (s > 0) {
+      s--;
+    } else {
+      m--;
+      s = 59;
     }
-  }]);
 
-  return LikeButton;
-}(React.Component);
+    if (s === 0 && m > 0) {
+      m--;
+      s = 59;
+    }
 
-var domContainer = document.querySelector("#app");
-ReactDOM.render(e(LikeButton), domContainer);
+    if (s === 0 && m === 0) {
+      clearInterval(clock);
+    }
+  } else {
+    clearInterval(clock);
+  }
+
+  if (m < 10) {
+    m = "0" + String(m);
+  } else {
+    m = String(m);
+  }
+
+  if (s < 10) {
+    s = "0" + String(s);
+  } else {
+    s = String(s);
+  }
+
+  return m + " : " + s;
+} // Refresh the dom
+
+
+function tick() {
+  var element = React.createElement("div", null, React.createElement("span", {
+    id: "count"
+  }, showTime()), React.createElement("div", {
+    id: "wrapBtn"
+  }, React.createElement("button", {
+    onClick: sum
+  }, "Plus"), React.createElement("br", null), React.createElement("button", {
+    onClick: start
+  }, "Play"), React.createElement("br", null), React.createElement("button", {
+    onClick: reset
+  }, "Reset"), React.createElement("br", null), React.createElement("button", {
+    onClick: dec
+  }, "Minus"), React.createElement("br", null)));
+  ReactDOM.render(element, document.querySelector("#root"));
+}
 },{}],"../../.npm-global/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -209,7 +277,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "32939" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37769" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
