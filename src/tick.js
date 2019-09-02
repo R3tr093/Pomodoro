@@ -140,9 +140,8 @@ function tick() {
                 <button onClick={reset}>Reset</button>
                 <br />
 
-              
                 <button onClick={dec}>Minus</button>
-               
+
                 <br />
             </div>
         </div>

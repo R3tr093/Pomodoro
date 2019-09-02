@@ -47,7 +47,6 @@ function base() {
     var element = React.createElement(
         "div",
         null,
-        "// eslint-disable-next-line react/react-in-jsx-scope",
         React.createElement(
             "span",
             { id: "count" },

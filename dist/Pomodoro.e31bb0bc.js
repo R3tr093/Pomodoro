@@ -163,7 +163,7 @@ function dec() {
 }
 
 function base() {
-  var element = React.createElement("div", null, "// eslint-disable-next-line react/react-in-jsx-scope", React.createElement("span", {
+  var element = React.createElement("div", null, React.createElement("span", {
     id: "count"
   }, " ", m, " : ", s, " "), React.createElement("div", {
     id: "wrapBtn"

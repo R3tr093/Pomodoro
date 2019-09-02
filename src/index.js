@@ -45,14 +45,12 @@ function dec() {
 
 function base() {
     const element = (
-
         <div>
-            // eslint-disable-next-line react/react-in-jsx-scope
+          
             <span id={"count"}>
                 {" "}
                 {m} : {s}{" "}
             </span>
-
             <div id={"wrapBtn"}>
                 <button onClick={sum}>Plus</button>
                 <br />
