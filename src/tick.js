@@ -1,4 +1,4 @@
-let m = 9;
+let m = 0;
 let s = 0;
 
 let clock = null;
@@ -26,7 +26,13 @@ function sum() {
 function dec() {
     s = Number(s);
     m = Number(m);
-    m--;
+    
+    
+    if(m > 0)
+    {
+        m--;
+    }
+   
 
     if (m < 10) {
         m = `0${String(m)}`;
@@ -46,11 +52,9 @@ function dec() {
 function base() {
     const element = (
         <div>
-            <span id={"count"}>
-                {" "}
-                {m} : {s}{" "}
+          
+            <span id={"count"}> 0{m} : 0{s}
             </span>
-
             <div id={"wrapBtn"}>
                 <button onClick={sum}>Plus</button>
                 <br />
@@ -141,7 +145,6 @@ function tick() {
                 <br />
 
                 <button onClick={dec}>Minus</button>
-
                 <br />
             </div>
         </div>

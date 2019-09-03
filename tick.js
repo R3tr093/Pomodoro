@@ -1,4 +1,4 @@
-var m = 9;
+var m = 0;
 var s = 0;
 
 var clock = null;
@@ -26,7 +26,10 @@ function sum() {
 function dec() {
     s = Number(s);
     m = Number(m);
-    m--;
+
+    if (m > 0) {
+        m--;
+    }
 
     if (m < 10) {
         m = "0" + String(m);
@@ -50,11 +53,10 @@ function base() {
         React.createElement(
             "span",
             { id: "count" },
-            " ",
+            " 0",
             m,
-            " : ",
-            s,
-            " "
+            " : 0",
+            s
         ),
         React.createElement(
             "div",

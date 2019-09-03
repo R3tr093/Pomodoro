@@ -1,3 +1,4 @@
+------------------------------------------------------------------
 
 >>> husky > git commit -m " commit " --no-verify
 
@@ -28,3 +29,14 @@ At the end of the timer, show a modal to invite user to take a break. The modal 
 
     One to close the modal
     Another to close the modal and start a new timer
+
+
+_____________________________________________________
+
+
+TO DO
+
+--> Carry the problem where we can use minus or plus when the clock is active.
+
+
+--> Modal box
