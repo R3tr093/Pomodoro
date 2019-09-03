@@ -53,7 +53,8 @@ function base() {
         React.createElement(
             "span",
             { id: "count" },
-            " 0",
+            " ",
+            "0",
             m,
             " : 0",
             s

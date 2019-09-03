@@ -7,42 +7,42 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var Toggle = function (_React$Component) {
-  _inherits(Toggle, _React$Component);
+    _inherits(Toggle, _React$Component);
 
-  function Toggle(props) {
-    _classCallCheck(this, Toggle);
+    function Toggle(props) {
+        _classCallCheck(this, Toggle);
 
-    var _this = _possibleConstructorReturn(this, (Toggle.__proto__ || Object.getPrototypeOf(Toggle)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (Toggle.__proto__ || Object.getPrototypeOf(Toggle)).call(this, props));
 
-    _this.state = { isToggleOn: true };
+        _this.state = { isToggleOn: true };
 
-    // Cette liaison est nécéssaire afin de permettre
-    // l'utilisation de `this` dans la fonction de rappel.
-    _this.handleClick = _this.handleClick.bind(_this);
-    return _this;
-  }
-
-  _createClass(Toggle, [{
-    key: 'handleClick',
-    value: function handleClick() {
-      this.setState(function (state) {
-        return {
-          isToggleOn: !state.isToggleOn
-        };
-      });
+        // Cette liaison est nécéssaire afin de permettre
+        // l'utilisation de `this` dans la fonction de rappel.
+        _this.handleClick = _this.handleClick.bind(_this);
+        return _this;
     }
-  }, {
-    key: 'render',
-    value: function render() {
-      return React.createElement(
-        'button',
-        { onClick: this.handleClick },
-        this.state.isToggleOn ? 'ON' : 'OFF'
-      );
-    }
-  }]);
 
-  return Toggle;
+    _createClass(Toggle, [{
+        key: "handleClick",
+        value: function handleClick() {
+            this.setState(function (state) {
+                return {
+                    isToggleOn: !state.isToggleOn
+                };
+            });
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            return React.createElement(
+                "button",
+                { onClick: this.handleClick },
+                this.state.isToggleOn ? "ON" : "OFF"
+            );
+        }
+    }]);
+
+    return Toggle;
 }(React.Component);
 
-ReactDOM.render(React.createElement(Toggle, null), document.getElementById('root'));
+ReactDOM.render(React.createElement(Toggle, null), document.querySelector("#root"));

@@ -117,213 +117,79 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"index.js":[function(require,module,exports) {
-var m = 25;
-var s = 0;
-var clock = false;
-var playBtn = null;
+})({"../../.npm-global/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
 
-function sum() {
-  s = Number(s);
-  m = Number(m);
-  m++;
-
-  if (m < 10) {
-    m = "0" + String(m);
-  } else {
-    m = String(m);
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
   }
 
-  if (s < 10) {
-    s = "0" + String(s);
-  } else {
-    s = String(s);
-  }
-
-  document.querySelector("#count").textContent = m + " : " + s;
+  return bundleURL;
 }
 
-function dec() {
-  s = Number(s);
-  m = Number(m);
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
 
-  if (m > 0) {
-    m--;
-  }
-
-  if (m < 10) {
-    m = "0" + String(m);
-  } else {
-    m = String(m);
-  }
-
-  if (s < 10) {
-    s = "0" + String(s);
-  } else {
-    s = String(s);
-  }
-
-  document.querySelector("#count").textContent = m + " : " + s;
-}
-
-function base() {
-  playBtn = document.getElementById('play');
-  s = 0;
-  m = 25;
-  var element = React.createElement("div", null, React.createElement("span", {
-    id: "count"
-  }, " ", m, " : 0", s), React.createElement("div", {
-    id: "wrapBtn"
-  }, React.createElement("button", {
-    onClick: sum
-  }, "Plus"), React.createElement("br", null), React.createElement("button", {
-    id: "play",
-    onClick: start
-  }, "Play"), React.createElement("br", null), React.createElement("button", {
-    onClick: reset
-  }, "Reset"), React.createElement("br", null), React.createElement("button", {
-    onClick: dec
-  }, "Minus"), React.createElement("br", null)));
-  ReactDOM.render(element, document.querySelector("#root"));
-} // Init dom at this state
-
-
-base();
-
-function reset() {
-  document.querySelector("#count").textContent = "25 : 00";
-  clearInterval(clock);
-  s = 0;
-  m = 25;
-}
-
-function start() {
-  if (!clock) {
-    clock = setInterval(tick, 1000);
-    var playBtn = React.createElement("button", {
-      id: "play",
-      onClick: start
-    }, "Stop");
-  } else {
-    clearInterval(clock);
-    clock = false;
-    var playBtn = React.createElement("button", {
-      id: "play",
-      onClick: start
-    }, "Play");
-  }
-
-  if (s < 10) {
-    s = "0" + s;
-  }
-
-  var element = React.createElement("div", null, React.createElement("span", {
-    id: "count"
-  }, " ", m, " : ", s), React.createElement("div", {
-    id: "wrapBtn"
-  }, React.createElement("button", {
-    onClick: sum
-  }, "Plus"), React.createElement("br", null), playBtn, React.createElement("br", null), React.createElement("button", {
-    onClick: reset
-  }, "Reset"), React.createElement("br", null), React.createElement("button", {
-    onClick: dec
-  }, "Minus"), React.createElement("br", null)));
-  ReactDOM.render(element, document.querySelector("#root"));
-}
-
-function showTime() {
-  m = Number(m);
-  s = Number(s);
-  end = false;
-
-  if (s > 0) {
-    s--;
-  } else {
-    m--;
-    s = 59;
-  }
-
-  if (s === 0 && m > 0) {
-    m--;
-    s = 59;
-  }
-
-  if (s === 0 && m === 0) {
-    clearInterval(clock);
-  }
-
-  if (m < 10) {
-    m = "0" + String(m);
-  } else {
-    m = String(m);
-  }
-
-  if (s < 10) {
-    s = "0" + String(s);
-  } else {
-    s = String(s);
-  }
-
-  return m + " : " + s;
-} // Refresh the dom
-
-
-function tick() {
-  if (s <= 1 && m <= 1) {
-    console.log("pas fini");
-    console.log(s);
-    var info = "FIIIIIIIIIINI";
-    var element = React.createElement("div", null, " ", React.createElement("p", {
-      id: "report"
-    }, info), React.createElement("div", {
-      id: "wrapBtn"
-    }, React.createElement("button", {
-      onClick: base
-    }, "Restart"), React.createElement("br", null)));
-    ReactDOM.render(element, document.querySelector("#root"));
-  }
-
-  if (m > 1 || s > 1) {
-    var info = "PAS FIIIIIIIIIINI";
-
-    if (!clock) {
-      var _element = React.createElement("div", null, " ", React.createElement("p", {
-        id: "report"
-      }, info), React.createElement("span", {
-        id: "count"
-      }, showTime()), React.createElement("div", {
-        id: "wrapBtn"
-      }, React.createElement("button", {
-        onClick: sum
-      }, "Plus"), React.createElement("br", null), React.createElement("button", {
-        id: "play",
-        onClick: start
-      }, "Stop"), React.createElement("br", null), React.createElement("button", {
-        onClick: reset
-      }, "Reset"), React.createElement("br", null), React.createElement("button", {
-        onClick: dec
-      }, "Minus"), React.createElement("br", null)));
-
-      ReactDOM.render(_element, document.querySelector("#root"));
-    } else {
-      var _element2 = React.createElement("div", null, " ", React.createElement("p", {
-        id: "report"
-      }, info), React.createElement("span", {
-        id: "count"
-      }, showTime()), React.createElement("div", {
-        id: "wrapBtn"
-      }, React.createElement("button", null, "Plus"), React.createElement("br", null), React.createElement("button", {
-        id: "play",
-        onClick: start
-      }, "Stop"), React.createElement("br", null), React.createElement("button", {
-        onClick: reset
-      }, "Reset"), React.createElement("br", null), React.createElement("button", null, "Minus"), React.createElement("br", null)));
-
-      ReactDOM.render(_element2, document.querySelector("#root"));
+    if (matches) {
+      return getBaseURL(matches[0]);
     }
   }
+
+  return '/';
 }
-},{}],"../../.npm-global/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"../../.npm-global/lib/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"../../.npm-global/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"animate.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../../.npm-global/lib/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../../.npm-global/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -526,5 +392,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../.npm-global/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
-//# sourceMappingURL=/Pomodoro.e31bb0bc.js.map
+},{}]},{},["../../.npm-global/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
+//# sourceMappingURL=/animate.f747fe2f.js.map

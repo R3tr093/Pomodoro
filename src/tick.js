@@ -26,13 +26,10 @@ function sum() {
 function dec() {
     s = Number(s);
     m = Number(m);
-    
-    
-    if(m > 0)
-    {
+
+    if (m > 0) {
         m--;
     }
-   
 
     if (m < 10) {
         m = `0${String(m)}`;
@@ -52,8 +49,9 @@ function dec() {
 function base() {
     const element = (
         <div>
-          
-            <span id={"count"}> 0{m} : 0{s}
+            <span id={"count"}>
+                {" "}
+                0{m} : 0{s}
             </span>
             <div id={"wrapBtn"}>
                 <button onClick={sum}>Plus</button>
