@@ -1,8 +1,10 @@
-var m = 25;
-var s = 0;
+let m = 25;
+let s = 0;
 
-var clock = false;
-var playBtn = null;
+let clock = false;
+let playBtn = null;
+let ring = false;
+let info = "";
 
 function sum() {
     s = Number(s);
@@ -10,18 +12,18 @@ function sum() {
     m++;
 
     if (m < 10) {
-        m = "0" + String(m);
+        m = `0${String(m)}`;
     } else {
         m = String(m);
     }
 
     if (s < 10) {
-        s = "0" + String(s);
+        s = `0${String(s)}`;
     } else {
         s = String(s);
     }
 
-    document.querySelector("#count").textContent = m + " : " + s;
+    document.querySelector("#count").textContent = `${m} : ${s}`;
 }
 
 function dec() {
@@ -33,65 +35,80 @@ function dec() {
     }
 
     if (m < 10) {
-        m = "0" + String(m);
+        m = `0${String(m)}`;
     } else {
         m = String(m);
     }
 
     if (s < 10) {
-        s = "0" + String(s);
+        s = `0${String(s)}`;
     } else {
         s = String(s);
     }
 
-    document.querySelector("#count").textContent = m + " : " + s;
+    document.querySelector("#count").textContent = `${m} : ${s}`;
 }
 
 function base() {
-
-    playBtn = document.getElementById('play');
+    playBtn = document.querySelector("#play");
     s = 0;
     m = 25;
 
-    var element = React.createElement(
+    const audio = new Audio("hello.wav");
+    audio.play();
+
+    const element = React.createElement(
         "div",
         null,
         React.createElement(
-            "span",
-            { id: "count" },
-            " ",
-            m,
-            " : 0",
-            s
+            "div",
+            {id: "timerWrapper"},
+            React.createElement("span", {id: "count"}, " ", m, " : 0", s),
         ),
         React.createElement(
             "div",
-            { id: "wrapBtn" },
+            {id: "wrapBtn"},
             React.createElement(
                 "button",
-                { onClick: sum },
-                "Plus"
+                {
+                    className: "slideInLeft animated",
+                    id: "sumBtn",
+                    onClick: sum,
+                },
+                "Plus",
             ),
             React.createElement("br", null),
             React.createElement(
                 "button",
-                { id: "play", onClick: start },
-                "Play"
+                {
+                    className: "slideInLeft animated",
+                    id: "play",
+                    onClick: start,
+                },
+                "Play",
             ),
             React.createElement("br", null),
             React.createElement(
                 "button",
-                { onClick: reset },
-                "Reset"
+                {
+                    className: "slideInLeft animated",
+                    id: "resetBtn",
+                    onClick: reset,
+                },
+                "Reset",
             ),
             React.createElement("br", null),
             React.createElement(
                 "button",
-                { onClick: dec },
-                "Minus"
+                {
+                    className: "slideInLeft animated",
+                    id: "minusBtn",
+                    onClick: dec,
+                },
+                "Minus",
             ),
-            React.createElement("br", null)
-        )
+            React.createElement("br", null),
+        ),
     );
 
     ReactDOM.render(element, document.querySelector("#root"));
@@ -109,63 +126,76 @@ function reset() {
 }
 
 function start() {
-
     if (!clock) {
         clock = setInterval(tick, 1000);
+        info = "Timer is running !";
+        var audio = new Audio("go.wav");
+
+        audio.play();
+
+        if (ring) {
+            setTimeout(() => {
+                const audio = new Audio("clock.wav");
+
+                audio.play();
+            }, 1500);
+        }
+
+        ring = true;
+
         var playBtn = React.createElement(
             "button",
-            { id: "play", onClick: start },
-            "Stop"
+            {id: "play", onClick: start},
+            "Stop",
         );
     } else {
         clearInterval(clock);
+
         clock = false;
+        info = "Timer is stopped !";
+        var audio = new Audio("stop.wav");
+
+        audio.play();
         var playBtn = React.createElement(
             "button",
-            { id: "play", onClick: start },
-            "Play"
+            {id: "play", onClick: start},
+            "Play",
         );
     }
 
     if (s < 10) {
-        s = "0" + s;
+        s = `0${s}`;
     }
 
-    var element = React.createElement(
+    const element = React.createElement(
         "div",
         null,
         React.createElement(
-            "span",
-            { id: "count" },
-            " ",
-            m,
-            " : ",
-            s
+            "div",
+            {id: "timerWrapper"},
+            React.createElement("span", {id: "count"}, " ", m, " : ", s),
         ),
         React.createElement(
             "div",
-            { id: "wrapBtn" },
-            React.createElement(
-                "button",
-                { onClick: sum },
-                "Plus"
-            ),
+            {id: "wrapBtn"},
+            React.createElement("p", {id: "report"}, info),
+            React.createElement("button", {id: "sumBtn", onClick: sum}, "Plus"),
             React.createElement("br", null),
             playBtn,
             React.createElement("br", null),
             React.createElement(
                 "button",
-                { onClick: reset },
-                "Reset"
+                {id: "resetBtn", onClick: reset},
+                "Reset",
             ),
             React.createElement("br", null),
             React.createElement(
                 "button",
-                { onClick: dec },
-                "Minus"
+                {id: "minusBtn", onClick: dec},
+                "Minus",
             ),
-            React.createElement("br", null)
-        )
+            React.createElement("br", null),
+        ),
     );
 
     ReactDOM.render(element, document.querySelector("#root"));
@@ -179,159 +209,158 @@ function showTime() {
 
     if (s > 0) {
         s--;
-    } else {
-        m--;
-        s = 59;
     }
 
     if (s === 0 && m > 0) {
         m--;
         s = 59;
+        audio = new Audio("clock.wav");
+        audio.play();
     }
 
-    if (s === 0 && m === 0) {
+    if (m === 0 && s === 30) {
+        audio = new Audio("last.wav");
+        audio.play();
+    }
+
+    if (m === 0 && s === 20) {
+        audio = new Audio("last.wav");
+        audio.play();
+    }
+
+    if (m === 0 && s === 10) {
+        audio = new Audio("last.wav");
+        audio.play();
+    }
+
+    if (s === 0 && m < 0) {
         clearInterval(clock);
     }
 
     if (m < 10) {
-        m = "0" + String(m);
+        m = `0${String(m)}`;
     } else {
         m = String(m);
     }
 
     if (s < 10) {
-        s = "0" + String(s);
+        s = `0${String(s)}`;
     } else {
         s = String(s);
     }
 
-    return m + " : " + s;
+    return `${m} : ${s}`;
 }
 
 // Refresh the dom
 
 function tick() {
-
     if (s <= 1 && m <= 1) {
-        console.log("pas fini");
-        console.log(s);
-        var info = "FIIIIIIIIIINI";
-
-        var element = React.createElement(
+        const element = React.createElement(
             "div",
             null,
-            " ",
-            React.createElement(
-                "p",
-                { id: "report" },
-                info
-            ),
             React.createElement(
                 "div",
-                { id: "wrapBtn" },
+                {id: "wrapBtn2"},
+                React.createElement("p", {id: "report2"}, " Timer is over !"),
                 React.createElement(
                     "button",
-                    { onClick: base },
-                    "Restart"
+                    {id: "restartBtn", onClick: base},
+                    "Restart",
                 ),
-                React.createElement("br", null)
-            )
+                React.createElement("br", null),
+                React.createElement(
+                    "button",
+                    {id: "breakBtn", onClick: base},
+                    "Take a break",
+                ),
+            ),
         );
+
         ReactDOM.render(element, document.querySelector("#root"));
     }
 
     if (m > 1 || s > 1) {
-
-        var info = "PAS FIIIIIIIIIINI";
-
         if (!clock) {
-            var _element = React.createElement(
+            const _element = React.createElement(
                 "div",
                 null,
-                " ",
                 React.createElement(
-                    "p",
-                    { id: "report" },
-                    info
-                ),
-                React.createElement(
-                    "span",
-                    { id: "count" },
-                    showTime()
+                    "div",
+                    {id: "timerWrapper"},
+                    " ",
+                    React.createElement("span", {id: "count"}, showTime()),
                 ),
                 React.createElement(
                     "div",
-                    { id: "wrapBtn" },
+                    {id: "wrapBtn"},
+                    React.createElement("p", {id: "report"}, " "),
                     React.createElement(
                         "button",
-                        { onClick: sum },
-                        "Plus"
+                        {id: "sumBtn", onClick: sum},
+                        "Plus",
                     ),
                     React.createElement("br", null),
                     React.createElement(
                         "button",
-                        { id: "play", onClick: start },
-                        "Stop"
+                        {id: "play", onClick: start},
+                        "Stop",
                     ),
                     React.createElement("br", null),
                     React.createElement(
                         "button",
-                        { onClick: reset },
-                        "Reset"
+                        {id: "resetBtn", onClick: reset},
+                        "Reset",
                     ),
                     React.createElement("br", null),
                     React.createElement(
                         "button",
-                        { onClick: dec },
-                        "Minus"
+                        {id: "minusBtn", onClick: dec},
+                        "Minus",
                     ),
-                    React.createElement("br", null)
-                )
+                    React.createElement("br", null),
+                ),
             );
             ReactDOM.render(_element, document.querySelector("#root"));
         } else {
-            var _element2 = React.createElement(
+            const _element2 = React.createElement(
                 "div",
                 null,
-                " ",
                 React.createElement(
-                    "p",
-                    { id: "report" },
-                    info
-                ),
-                React.createElement(
-                    "span",
-                    { id: "count" },
-                    showTime()
+                    "div",
+                    {id: "timerWrapper"},
+                    " ",
+                    React.createElement("span", {id: "count"}, showTime()),
                 ),
                 React.createElement(
                     "div",
-                    { id: "wrapBtn" },
+                    {id: "wrapBtn"},
+                    React.createElement("p", {id: "report"}, info),
                     React.createElement(
                         "button",
-                        null,
-                        "Plus"
+                        {id: "sumBtnDisable", disable: true},
+                        "Plus",
                     ),
                     React.createElement("br", null),
                     React.createElement(
                         "button",
-                        { id: "play", onClick: start },
-                        "Stop"
+                        {id: "play", onClick: start},
+                        "Stop",
                     ),
                     React.createElement("br", null),
                     React.createElement(
                         "button",
-                        { onClick: reset },
-                        "Reset"
+                        {id: "resetBtn", onClick: reset},
+                        "Reset",
                     ),
                     React.createElement("br", null),
                     React.createElement(
                         "button",
-                        null,
-                        "Minus"
+                        {id: "minusBtnDisable"},
+                        "Minus",
                     ),
-                    React.createElement("br", null)
-                )
+                    React.createElement("br", null),
+                ),
             );
             ReactDOM.render(_element2, document.querySelector("#root"));
         }

@@ -1,8 +1,8 @@
-var m = 25;
-var s = 0;
+let m = 25;
+let s = 0;
 
-var clock = false;
-var playBtn = null;
+let clock = false;
+let playBtn = null;
 
 function sum() {
     s = Number(s);
@@ -10,18 +10,18 @@ function sum() {
     m++;
 
     if (m < 10) {
-        m = "0" + String(m);
+        m = `0${String(m)}`;
     } else {
         m = String(m);
     }
 
     if (s < 10) {
-        s = "0" + String(s);
+        s = `0${String(s)}`;
     } else {
         s = String(s);
     }
 
-    document.querySelector("#count").textContent = m + " : " + s;
+    document.querySelector("#count").textContent = `${m} : ${s}`;
 }
 
 function dec() {
@@ -33,68 +33,41 @@ function dec() {
     }
 
     if (m < 10) {
-        m = "0" + String(m);
+        m = `0${String(m)}`;
     } else {
         m = String(m);
     }
 
     if (s < 10) {
-        s = "0" + String(s);
+        s = `0${String(s)}`;
     } else {
         s = String(s);
     }
 
-    document.querySelector("#count").textContent = m + " : " + s;
+    document.querySelector("#count").textContent = `${m} : ${s}`;
 }
 
 function base() {
     playBtn = document.querySelector("#play");
 
-    var element = React.createElement(
+    const element = React.createElement(
         "div",
         null,
         " ",
-        React.createElement(
-            "h1",
-            null,
-            "Info"
-        ),
-        React.createElement(
-            "span",
-            { id: "count" },
-            " ",
-            m,
-            " : 0",
-            s
-        ),
+        React.createElement("h1", null, "Info"),
+        React.createElement("span", {id: "count"}, " ", m, " : 0", s),
         React.createElement(
             "div",
-            { id: "wrapBtn" },
-            React.createElement(
-                "button",
-                { onClick: sum },
-                "Plus"
-            ),
+            {id: "wrapBtn"},
+            React.createElement("button", {onClick: sum}, "Plus"),
             React.createElement("br", null),
-            React.createElement(
-                "button",
-                { id: "play", onClick: start },
-                "Play"
-            ),
+            React.createElement("button", {id: "play", onClick: start}, "Play"),
             React.createElement("br", null),
-            React.createElement(
-                "button",
-                { onClick: reset },
-                "Reset"
-            ),
+            React.createElement("button", {onClick: reset}, "Reset"),
             React.createElement("br", null),
-            React.createElement(
-                "button",
-                { onClick: dec },
-                "Minus"
-            ),
-            React.createElement("br", null)
-        )
+            React.createElement("button", {onClick: dec}, "Minus"),
+            React.createElement("br", null),
+        ),
     );
 
     ReactDOM.render(element, document.querySelector("#root"));
@@ -116,54 +89,35 @@ function start() {
         clock = setInterval(tick, 1000);
         var playBtn = React.createElement(
             "button",
-            { id: "play", onClick: start },
-            "Stop"
+            {id: "play", onClick: start},
+            "Stop",
         );
     } else {
         clearInterval(clock);
         clock = false;
         var playBtn = React.createElement(
             "button",
-            { id: "play", onClick: start },
-            "Play"
+            {id: "play", onClick: start},
+            "Play",
         );
     }
 
-    var element = React.createElement(
+    const element = React.createElement(
         "div",
         null,
-        React.createElement(
-            "span",
-            { id: "count" },
-            " ",
-            m,
-            " : ",
-            s
-        ),
+        React.createElement("span", {id: "count"}, " ", m, " : ", s),
         React.createElement(
             "div",
-            { id: "wrapBtn" },
-            React.createElement(
-                "button",
-                { onClick: sum },
-                "Plus"
-            ),
+            {id: "wrapBtn"},
+            React.createElement("button", {onClick: sum}, "Plus"),
             React.createElement("br", null),
             playBtn,
             React.createElement("br", null),
-            React.createElement(
-                "button",
-                { onClick: reset },
-                "Reset"
-            ),
+            React.createElement("button", {onClick: reset}, "Reset"),
             React.createElement("br", null),
-            React.createElement(
-                "button",
-                { onClick: dec },
-                "Minus"
-            ),
-            React.createElement("br", null)
-        )
+            React.createElement("button", {onClick: dec}, "Minus"),
+            React.createElement("br", null),
+        ),
     );
 
     ReactDOM.render(element, document.querySelector("#root"));
@@ -194,18 +148,18 @@ function showTime() {
     }
 
     if (m < 10) {
-        m = "0" + String(m);
+        m = `0${String(m)}`;
     } else {
         m = String(m);
     }
 
     if (s < 10) {
-        s = "0" + String(s);
+        s = `0${String(s)}`;
     } else {
         s = String(s);
     }
 
-    return m + " : " + s;
+    return `${m} : ${s}`;
 }
 
 function report() {
@@ -216,81 +170,49 @@ function report() {
 
 function tick() {
     if (!clock) {
-        var element = React.createElement(
+        const element = React.createElement(
             "div",
             null,
-            React.createElement(
-                "span",
-                { id: "count" },
-                showTime()
-            ),
+            React.createElement("span", {id: "count"}, showTime()),
             React.createElement(
                 "div",
-                { id: "wrapBtn" },
-                React.createElement(
-                    "button",
-                    { onClick: sum },
-                    "Plus"
-                ),
+                {id: "wrapBtn"},
+                React.createElement("button", {onClick: sum}, "Plus"),
                 React.createElement("br", null),
                 React.createElement(
                     "button",
-                    { id: "play", onClick: start },
-                    "Stop"
+                    {id: "play", onClick: start},
+                    "Stop",
                 ),
                 React.createElement("br", null),
-                React.createElement(
-                    "button",
-                    { onClick: reset },
-                    "Reset"
-                ),
+                React.createElement("button", {onClick: reset}, "Reset"),
                 React.createElement("br", null),
-                React.createElement(
-                    "button",
-                    { onClick: dec },
-                    "Minus"
-                ),
-                React.createElement("br", null)
-            )
+                React.createElement("button", {onClick: dec}, "Minus"),
+                React.createElement("br", null),
+            ),
         );
         ReactDOM.render(element, document.querySelector("#root"));
     } else {
-        var _element = React.createElement(
+        const _element = React.createElement(
             "div",
             null,
-            React.createElement(
-                "span",
-                { id: "count" },
-                showTime()
-            ),
+            React.createElement("span", {id: "count"}, showTime()),
             React.createElement(
                 "div",
-                { id: "wrapBtn" },
-                React.createElement(
-                    "button",
-                    { onClick: sum },
-                    "Plus"
-                ),
+                {id: "wrapBtn"},
+                React.createElement("button", {onClick: sum}, "Plus"),
                 React.createElement("br", null),
                 React.createElement(
                     "button",
-                    { id: "play", onClick: start },
-                    "Stop"
+                    {id: "play", onClick: start},
+                    "Stop",
                 ),
                 React.createElement("br", null),
-                React.createElement(
-                    "button",
-                    { onClick: reset },
-                    "Reset"
-                ),
+                React.createElement("button", {onClick: reset}, "Reset"),
                 React.createElement("br", null),
-                React.createElement(
-                    "button",
-                    { onClick: dec },
-                    "Minus"
-                ),
-                React.createElement("br", null)
-            )
+                React.createElement("button", {onClick: dec}, "Minus"),
+                React.createElement("br", null),
+            ),
         );
         ReactDOM.render(_element, document.querySelector("#root"));
     }

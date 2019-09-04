@@ -1,7 +1,11 @@
+
+
 body
 {
     width: 70%;
     margin: auto;
+    overflow: hidden;
+    background: no-repeat center/120% url(/background.2ed783aa.jpeg);
 }
 
 #root
@@ -14,8 +18,38 @@ body
 #count
 {
     position: relative;
-    top: 70px;
+    top: 50%;
+    left: 35%;
+    font-family: 'Press Start 2P', cursive;
+    text-shadow:-3px -3px 3px #aaa;
+
+}
+
+#cat
+{
+    position: absolute;
+    left: 20%;
+    top: 50%;
+
+}
+
+#timerWrapper
+{
+    height: 390px;
+    width: 390px;
+    border-radius: 50%;
+    position: absolute;
     left: 40%;
+    top: 35%;
+    background: url(/sleep.0c0d923f.gif) no-repeat center;
+    cursor: pointer;
+}
+
+#wrapBtn
+{
+    position: absolute;
+    left:70%;
+    top: 30%;
 }
 
 button
@@ -25,5 +59,296 @@ button
     left: 50%;
     margin-bottom: 10px;
 }
+
+#bck
+{
+    position: absolute;
+    left: 0px;
+    top: 43%;
+}
+
+#bannerH1
+{
+    text-align: center;
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: 60px;
+    position: relative;
+    left: -5%;
+    text-shadow:1px 1px 0 red, 2px 2px 0 orange, 3px 3px 0 yellow, 4px 4px 0 green, 5px 5px 0 blue, 6px 6px 0 indigo, 7px 7px 0 violet;
+}
+
+
+*{
+  box-sizing:border-box;
+}
+
+#report
+{
+    position: absolute;
+    left: 90%;
+    top: -60%;
+    height: 90px;
+    font-family: 'Ma Shan Zheng', cursive;
+    width: 250px;
+    font-size: 60px;
+    text-shadow:-3px -3px 3px #aaa;
+    margin-bottom: 30px;
+    color: whitesmoke;
+}
+
+button:hover
+      {
+        
+         -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+         -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+         box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+         cursor: pointer;
+         height: 80px;
+         width: 230px;
+         font-size: 55px;
+         margin-left: 10px;
+      } 
+button{
+         border:solid 7px #41403E;
+         height: 90px;
+         font-family: 'Ma Shan Zheng', cursive;
+         width: 250px;
+         font-size: 60px;
+         text-shadow:-3px -3px 3px #aaa;
+         margin-bottom: 30px;
+         
+      }
+
+#sumBtn
+{
+    border-left-color: yellow;
+    border-bottom-color: hotpink;
+    border-right-color: lightskyblue;
+    border-top-color: red;
+    color: hotpink;
+}      
+
+#sumBtnDisable
+{
+    border-color: red;
+    background: yellow;
+    font-weight: italic;
+    color:red;
+}     
+
+#play
+{
+    border-left-color: hotpink;
+    border-bottom-color: yellow;
+    border-right-color: red; 
+    border-top-color: lightskyblue;
+    color: limegreen;
+}
+
+#resetBtn
+{
+    border-left-color: lightskyblue;
+    border-bottom-color:red;  
+    border-right-color: yellow;
+    border-top-color:  hotpink;
+    color: plum;
+}
+
+#minusBtn
+{
+    border-left-color: hotpink;
+    border-bottom-color: yellow;
+    border-right-color: red; 
+    border-top-color: lightskyblue;
+    color: goldenrod;
+}
+
+#minusBtnDisable
+{
+    border-color: red;
+    background: yellow;
+    font-weight: italic;
+    color:red;
+}
+
+
+#breakSpan
+{
+    margin-left: 80px;
+}
+
+
+ /* The animation code */
+ @keyframes birdMove {
+    0%   {left:99%; top:100px;}
+    1%   {left:98%; top:100px;}
+    2%   {left:97%; top:100px;}
+    3%   {left:95%; top:110px;}
+    4%   {left:94%; top:110px;}
+    5%   {left:93%; top:100px;}
+    6%   {left:92%; top:100px;}
+    7%   {left:91%; top:100px;}
+    8%   {left:90%; top:100px;}
+    9%   {left:89%; top:100px;}
+    10%   {left:88%; top:100px;}
+    11%   {left:87%; top:100px;}
+    12%   {left:86%; top:110px;}
+    13%   {left:85%; top:110px;}
+    14%   {left:84%; top:110px;}
+    15%   {left:83%; top:110px;}
+    16%   {left:82%; top:110px;}
+    18%   {left:81%; top:110px;}
+    20%   {left:80%; top:105px;}
+    21%   {left:79%; top:105px;}
+    22%   {left:78%; top:105px;}
+    23%   {left:77%; top:105px;}
+    24%   {left:76%; top:105px;}
+    25%   {left:75%; top:100px;}
+    26%   {left:74%; top:100px;}
+    27%   {left:73%; top:100px;}
+    28%   {left:72%; top:100px;}
+    29%   {left:71%; top:100px;}
+    30%   {left:70%; top:110px;}
+    31%   {left:69%; top:110px;}
+    32%   {left:68%; top:110px;}
+    33%   {left:67%; top:110px;}
+    34%   {left:66%; top:110px;}
+    35%   {left:65%; top:110px;}
+    36%   {left:64%; top:110px;}
+    37%   {left:63%; top:110px;}
+    38%   {left:62%; top:105px;}
+    39%   {left:61%; top:105px;}
+    40%   {left:60%; top:105px;}
+    41%   {left:59%; top:105px;}
+    42%   {left:58%; top:105px;}
+    43%   {left:57%; top:105px;}
+    44%   {left:56%; top:105px;}
+    45%   {left:55%; top:100px;}
+    46%   {left:54%; top:100px;}
+    46%   {left:53%; top:100px;}
+    47%   {left:52%; top:100px;}
+    48%   {left:51%; top:100px;}
+    49%   {left:50%; top:110px;}
+    50%   {left:49%; top:110px;}
+    51%   {left:48%; top:110px;}
+    52%   {left:47%; top:110px;}
+    53%   {left:46%; top:110px;}
+    54%   {left:45%; top:110px;}
+    55%   {left:44%; top:110px;}
+    56%   {left:43%; top:110px;}
+    57%   {left:42%; top:110px;}
+    58%   {left:41%; top:105px;}
+    59%   {left:40%; top:105px;}
+    60%   {left:39%; top:105px;}
+    62%   {left:37%; top:105px;}
+    63%   {left:36%; top:105px;}
+    64%   {left:35%; top:105px;}
+    65%   {left:34%; top:100px;}
+    66%   {left:33%; top:100px;}
+    67%   {left:32%; top:100px;}
+    68%   {left:31%; top:100px;}
+    69%   {left:30%; top:100px;}
+    70%   {left:29%; top:100px;}
+    71%   {left:28%; top:100px;}
+    72%   {left:28%; top:100px;}
+    73%   {left:27%; top:100px;}
+    74%   {left:26%; top:100px;}
+    75%   {left:25%; top:100px;}
+    75%   {left:24%; top:100px;}
+    76%   {left:23%; top:100px;}
+    77%   {left:22%; top:110px;}
+    78%   {left:21%; top:110px;}
+    79%   {left:20%; top:110px;}
+    80%   {left:19%; top:110px;}
+    81%   {left:18%; top:110px;}
+    82%   {left:17%; top:110px;}
+    83%   {left:16%; top:110px;}
+    84%   {left:15%; top:110px;}
+    85%   {left:14%; top:110px;}
+    86%   {left:13%; top:110px;}
+    87%   {left:12%; top:110px;}
+    88%   {left:11%; top:110px;}
+    89%   {left:10%; top:110px;}
+    90%   {left:9%; top:105px;}
+    91%   {left:8%; top:105px;}
+    92%   {left:7%; top:105px;}
+    93%   {left:6%; top:105px;}
+    94%   {left:5%; top:105px;}
+    95%   {left:4%; top:100px;}
+    96%   {left:3%; top:100px;}
+    97%   {left:2%; top:100px;}
+    98%   {left:1%; top:100px;}
+    99%   {left:0%; top:100px;}
+    100%   {left:-10px; top:100px;}
+
+
+    
+    
+
+
+  }
+  
+  /* The element to apply the animation to */
+  #bird{
+    width: 200px;
+    height: auto;
+    position: absolute;
+    left: 150%;
+    top: 10%;
+    animation-name: birdMove;
+    animation-duration: 6s;
+    animation-delay: 3s;
+    animation-iteration-count: infinite;
+  } 
+
+
+ #git
+ {
+     position : absolute;
+     top: 88%;
+     left: 48%;
+     width: 100px;
+     height: auto;
+ } 
+
+
+ #wrapBtn2
+ {
+     position: absolute;
+     left: 65%;
+ }
+
+ #report2
+ {
+     position: absolute;
+     top: 30%;
+     left: -150%;
+     text-align: center;
+     font-family: 'Ma Shan Zheng', cursive;
+     font-size: 60px;
+     color: white;
+ }
+
+ #breakBtn
+ {
+    border-left-color: yellow;
+    border-bottom-color: hotpink;
+    border-right-color: lightskyblue;
+    border-top-color: red;
+    color: hotpink;
+    height: auto;
+    width: auto;
+ }
+
+ #restartBtn
+ {
+    border-left-color: yellow;
+    border-bottom-color: hotpink;
+    border-right-color: lightskyblue;
+    border-top-color: red;
+    color: hotpink;
+    height: auto;
+    width: auto;
+ }
 
 /*# sourceMappingURL=/Pomodoro.9ad09f98.css.map */
