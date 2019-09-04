@@ -1,27 +1,20 @@
-let m = 25;
+let m = 30;
 let s = 0;
-
-
-let playBtn = null;
-let ring = false;
 let info = "Timer is stopped";
 let Timer = -1;
 
-
 function sum() {
-    
-    if(Timer < 0)
-    {
+    if (Timer < 0) {
         s = Number(s);
         m = Number(m);
         m++;
-    
+
         if (m < 10) {
             m = `0${String(m)}`;
         } else {
             m = String(m);
         }
-    
+
         if (s < 10) {
             s = `0${String(s)}`;
         } else {
@@ -35,19 +28,17 @@ function dec() {
     s = Number(s);
     m = Number(m);
 
-    if(Timer < 0)
-    {
-
+    if (Timer < 0) {
         if (m > 0) {
             m--;
         }
-    
+
         if (m < 10) {
             m = `0${String(m)}`;
         } else {
             m = String(m);
         }
-    
+
         if (s < 10) {
             s = `0${String(s)}`;
         } else {
@@ -55,14 +46,12 @@ function dec() {
         }
     }
 
-
     document.querySelector("#count").textContent = `${m} : ${s}`;
 }
 
 function base() {
-    playBtn = document.querySelector("#play");
     s = 0;
-    m = 25;
+    m = 30;
 
     const audio = new Audio("hello.wav");
     audio.play();
@@ -72,7 +61,7 @@ function base() {
             <div id={"timerWrapper"}>
                 <span id={"count"}>
                     {" "}
-                    {m} : 0{s}
+                    {m}: 0{s}
                 </span>
             </div>
             <div id={"wrapBtn"}>
@@ -119,11 +108,8 @@ function base() {
 base();
 
 function Timebreak() {
-    playBtn = document.querySelector("#play");
     s = 0;
     m = 5;
-
- 
 
     const element = (
         <div>
@@ -172,24 +158,22 @@ function Timebreak() {
     ReactDOM.render(element, document.querySelector("#root"));
 }
 
-
-
-
 function reset() {
     clearInterval(Timer);
     s = 0;
-    m = 25;
+    m = 30;
     base();
 }
 
 function start() {
-
-    if(Timer > 0)
-    {
+    if (Timer > 0) {
         clearInterval(Timer);
         Timer = -1;
 
         info = "Timer is stopped ! ";
+        
+        document.getElementById("bck").src = "2.gif";
+        document.getElementById( 'cat' ).style.display = 'none';
 
         const element = (
             <div>
@@ -224,20 +208,21 @@ function start() {
             </div>
         );
         ReactDOM.render(element, document.querySelector("#root"));
-    }
+    } else {
+        const audio = new Audio("go.wav");
+        audio.play();
 
-    else
-    {
-        
+        setTimeout(() => {
+            const audio = new Audio("clock.wav");
+            audio.play();
+        }, 1500);
+
         info = "Timer is running ! ";
+        document.getElementById( 'cat' ).style.display = 'block';
+        document.getElementById("bck").src = "1.gif";
         Timer = setInterval(tick, 1000);
     }
-
-}   
-
-   
-
-   
+}
 
 function showTime() {
     m = Number(m);
@@ -291,7 +276,6 @@ function showTime() {
 // Refresh the dom
 
 function tick() {
-   
     if (s <= 1 && m <= 1) {
         const element = (
             <div>
@@ -300,14 +284,13 @@ function tick() {
                     <button id={"restartBtn"} onClick={base}>
                         Restart
                     </button>
-                    <br></br><br></br>
+                    <br />
+                    <br />
                     <button id={"breakBtn"} onClick={Timebreak}>
                         Take a break
                     </button>
 
-
                     <br />
-                    
                 </div>
             </div>
         );
@@ -316,83 +299,76 @@ function tick() {
     }
 
     if (m > 1 || s > 1) {
-        
         info = "Timer is running ! ";
 
-            if(Timer > 0)
-            {
-                const element = (
-                    <div>
-                        <div id={"timerWrapper"}>
-                            {" "}
-                            <span id={"count"}>{showTime()}</span>
-                        </div>
-    
-                        <div id={"wrapBtn"}>
-                            <p id={"report"}>{info}</p>
-                            <button id={"sumBtn"} onClick={sum}>
-                                Plus
-                            </button>
-                            <br />
-    
-                            <button id={"play"} onClick={start}>
-                                Stop
-                            </button>
-                            <br />
-    
-                            <button id={"resetBtn"} onClick={reset}>
-                                Reset
-                            </button>
-                            <br />
-    
-                            <button id={"minusBtn"} onClick={dec}>
-                                Minus
-                            </button>
-    
-                            <br />
-                        </div>
+        if (Timer > 0) {
+            const element = (
+                <div>
+                    <div id={"timerWrapper"}>
+                        {" "}
+                        <span id={"count"}>{showTime()}</span>
                     </div>
-                );
-                ReactDOM.render(element, document.querySelector("#root"));
-            }
 
-            else
-            {
-                const element = (
-                    <div>
-                        <div id={"timerWrapper"}>
-                            {" "}
-                            <span id={"count"}>{showTime()}</span>
-                        </div>
-    
-                        <div id={"wrapBtn"}>
-                            <p id={"report"}>{info}</p>
-                            <button id={"sumBtn"} onClick={sum}>
-                                Plus
-                            </button>
-                            <br />
-    
-                            <button id={"play"} onClick={start}>
-                                Play
-                            </button>
-                            <br />
-    
-                            <button id={"resetBtn"} onClick={reset}>
-                                Reset
-                            </button>
-                            <br />
-    
-                            <button id={"minusBtn"} onClick={dec}>
-                                Minus
-                            </button>
-    
-                            <br />
-                        </div>
+                    <div id={"wrapBtn"}>
+                        <p id={"report"}>{info}</p>
+                        <button id={"sumBtn"} onClick={sum}>
+                            Plus
+                        </button>
+                        <br />
+
+                        <button id={"play"} onClick={start}>
+                            Stop
+                        </button>
+                        <br />
+
+                        <button id={"resetBtn"} onClick={reset}>
+                            Reset
+                        </button>
+                        <br />
+
+                        <button id={"minusBtn"} onClick={dec}>
+                            Minus
+                        </button>
+
+                        <br />
                     </div>
-                );
-                ReactDOM.render(element, document.querySelector("#root"));
-            }
+                </div>
+            );
+            ReactDOM.render(element, document.querySelector("#root"));
+        } else {
+            const element = (
+                <div>
+                    <div id={"timerWrapper"}>
+                        {" "}
+                        <span id={"count"}>{showTime()}</span>
+                    </div>
 
+                    <div id={"wrapBtn"}>
+                        <p id={"report"}>{info}</p>
+                        <button id={"sumBtn"} onClick={sum}>
+                            Plus
+                        </button>
+                        <br />
 
+                        <button id={"play"} onClick={start}>
+                            Play
+                        </button>
+                        <br />
+
+                        <button id={"resetBtn"} onClick={reset}>
+                            Reset
+                        </button>
+                        <br />
+
+                        <button id={"minusBtn"} onClick={dec}>
+                            Minus
+                        </button>
+
+                        <br />
+                    </div>
+                </div>
+            );
+            ReactDOM.render(element, document.querySelector("#root"));
         }
-};
+    }
+}

@@ -118,10 +118,8 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"index.js":[function(require,module,exports) {
-var m = 25;
+var m = 30;
 var s = 0;
-var playBtn = null;
-var ring = false;
 var info = "Timer is stopped";
 var Timer = -1;
 
@@ -173,16 +171,15 @@ function dec() {
 }
 
 function base() {
-  playBtn = document.querySelector("#play");
   s = 0;
-  m = 25;
+  m = 30;
   var audio = new Audio("hello.wav");
   audio.play();
   var element = React.createElement("div", null, React.createElement("div", {
     id: "timerWrapper"
   }, React.createElement("span", {
     id: "count"
-  }, " ", m, " : 0", s)), React.createElement("div", {
+  }, " ", m, ": 0", s)), React.createElement("div", {
     id: "wrapBtn"
   }, React.createElement("button", {
     className: "slideInLeft animated",
@@ -208,7 +205,6 @@ function base() {
 base();
 
 function Timebreak() {
-  playBtn = document.querySelector("#play");
   s = 0;
   m = 5;
   var element = React.createElement("div", null, React.createElement("div", {
@@ -240,7 +236,7 @@ function Timebreak() {
 function reset() {
   clearInterval(Timer);
   s = 0;
-  m = 25;
+  m = 30;
   base();
 }
 
@@ -249,6 +245,8 @@ function start() {
     clearInterval(Timer);
     Timer = -1;
     info = "Timer is stopped ! ";
+    document.getElementById("bck").src = "2.gif";
+    document.getElementById('cat').style.display = 'none';
     var element = React.createElement("div", null, React.createElement("div", {
       id: "timerWrapper"
     }, " ", React.createElement("span", {
@@ -272,7 +270,17 @@ function start() {
     }, "Minus"), React.createElement("br", null)));
     ReactDOM.render(element, document.querySelector("#root"));
   } else {
+    var _audio = new Audio("go.wav");
+
+    _audio.play();
+
+    setTimeout(function () {
+      var audio = new Audio("clock.wav");
+      audio.play();
+    }, 1500);
     info = "Timer is running ! ";
+    document.getElementById('cat').style.display = 'block';
+    document.getElementById("bck").src = "1.gif";
     Timer = setInterval(tick, 1000);
   }
 }
@@ -397,8 +405,6 @@ function tick() {
     }
   }
 }
-
-;
 },{}],"../../.npm-global/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -427,7 +433,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45385" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "38041" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

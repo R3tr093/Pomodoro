@@ -100,7 +100,6 @@ button:hover
       {
         
          -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-         -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
          box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
          cursor: pointer;
          height: 80px;
@@ -132,7 +131,6 @@ button{
 {
     border-color: red;
     background: yellow;
-    font-weight: italic;
     color:red;
 }     
 
@@ -167,7 +165,6 @@ button{
 {
     border-color: red;
     background: yellow;
-    font-weight: italic;
     color:red;
 }
 

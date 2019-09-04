@@ -1,0 +1,39 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/home/retro/.npm-global/bin/npm',
+1 verbose cli   'run',
+1 verbose cli   'eslint',
+1 verbose cli   '--cache',
+1 verbose cli   '--fix' ]
+2 info using npm@6.11.2
+3 info using node@v10.16.0
+4 verbose run-script [ 'preeslint', 'eslint', 'posteslint' ]
+5 info lifecycle @hamilton19/pomodoro@1.0.0~preeslint: @hamilton19/pomodoro@1.0.0
+6 info lifecycle @hamilton19/pomodoro@1.0.0~eslint: @hamilton19/pomodoro@1.0.0
+7 verbose lifecycle @hamilton19/pomodoro@1.0.0~eslint: unsafe-perm in lifecycle true
+8 verbose lifecycle @hamilton19/pomodoro@1.0.0~eslint: PATH: /home/retro/.npm-global/lib/node_modules/npm/node_modules/npm-lifecycle/node-gyp-bin:/home/retro/GIT/Pomodoro/node_modules/.bin:/home/retro/.npm-global/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+9 verbose lifecycle @hamilton19/pomodoro@1.0.0~eslint: CWD: /home/retro/GIT/Pomodoro
+10 silly lifecycle @hamilton19/pomodoro@1.0.0~eslint: Args: [ '-c', 'eslint . --cache --fix' ]
+11 silly lifecycle @hamilton19/pomodoro@1.0.0~eslint: Returned: code: 1  signal: null
+12 info lifecycle @hamilton19/pomodoro@1.0.0~eslint: Failed to exec eslint script
+13 verbose stack Error: @hamilton19/pomodoro@1.0.0 eslint: `eslint . --cache --fix`
+13 verbose stack Exit status 1
+13 verbose stack     at EventEmitter.<anonymous> (/home/retro/.npm-global/lib/node_modules/npm/node_modules/npm-lifecycle/index.js:332:16)
+13 verbose stack     at EventEmitter.emit (events.js:198:13)
+13 verbose stack     at ChildProcess.<anonymous> (/home/retro/.npm-global/lib/node_modules/npm/node_modules/npm-lifecycle/lib/spawn.js:55:14)
+13 verbose stack     at ChildProcess.emit (events.js:198:13)
+13 verbose stack     at maybeClose (internal/child_process.js:982:16)
+13 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:259:5)
+14 verbose pkgid @hamilton19/pomodoro@1.0.0
+15 verbose cwd /home/retro/GIT/Pomodoro
+16 verbose Linux 5.0.0-25-generic
+17 verbose argv "/usr/local/bin/node" "/home/retro/.npm-global/bin/npm" "run" "eslint" "--cache" "--fix"
+18 verbose node v10.16.0
+19 verbose npm  v6.11.2
+20 error code ELIFECYCLE
+21 error errno 1
+22 error @hamilton19/pomodoro@1.0.0 eslint: `eslint . --cache --fix`
+22 error Exit status 1
+23 error Failed at the @hamilton19/pomodoro@1.0.0 eslint script.
+23 error This is probably not a problem with npm. There is likely additional logging output above.
+24 verbose exit [ 1, true ]

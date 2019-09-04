@@ -1,13 +1,9 @@
-var m = 25;
+var m = 30;
 var s = 0;
-
-var playBtn = null;
-var ring = false;
 var info = "Timer is stopped";
 var Timer = -1;
 
 function sum() {
-
     if (Timer < 0) {
         s = Number(s);
         m = Number(m);
@@ -33,7 +29,6 @@ function dec() {
     m = Number(m);
 
     if (Timer < 0) {
-
         if (m > 0) {
             m--;
         }
@@ -55,9 +50,8 @@ function dec() {
 }
 
 function base() {
-    playBtn = document.querySelector("#play");
     s = 0;
-    m = 25;
+    m = 30;
 
     var audio = new Audio("hello.wav");
     audio.play();
@@ -73,7 +67,7 @@ function base() {
                 { id: "count" },
                 " ",
                 m,
-                " : 0",
+                ": 0",
                 s
             )
         ),
@@ -127,7 +121,6 @@ function base() {
 base();
 
 function Timebreak() {
-    playBtn = document.querySelector("#play");
     s = 0;
     m = 5;
 
@@ -194,17 +187,19 @@ function Timebreak() {
 function reset() {
     clearInterval(Timer);
     s = 0;
-    m = 25;
+    m = 30;
     base();
 }
 
 function start() {
-
     if (Timer > 0) {
         clearInterval(Timer);
         Timer = -1;
 
         info = "Timer is stopped ! ";
+
+        document.getElementById("bck").src = "2.gif";
+        document.getElementById('cat').style.display = 'none';
 
         var element = React.createElement(
             "div",
@@ -255,8 +250,17 @@ function start() {
         );
         ReactDOM.render(element, document.querySelector("#root"));
     } else {
+        var _audio = new Audio("go.wav");
+        _audio.play();
+
+        setTimeout(function () {
+            var audio = new Audio("clock.wav");
+            audio.play();
+        }, 1500);
 
         info = "Timer is running ! ";
+        document.getElementById('cat').style.display = 'block';
+        document.getElementById("bck").src = "1.gif";
         Timer = setInterval(tick, 1000);
     }
 }
@@ -313,7 +317,6 @@ function showTime() {
 // Refresh the dom
 
 function tick() {
-
     if (s <= 1 && m <= 1) {
         var element = React.createElement(
             "div",
@@ -346,7 +349,6 @@ function tick() {
     }
 
     if (m > 1 || s > 1) {
-
         info = "Timer is running ! ";
 
         if (Timer > 0) {
@@ -449,4 +451,4 @@ function tick() {
             ReactDOM.render(_element2, document.querySelector("#root"));
         }
     }
-};
+}
