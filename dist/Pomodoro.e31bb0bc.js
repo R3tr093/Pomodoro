@@ -130,19 +130,19 @@ function sum() {
     m++;
 
     if (m < 10) {
-      m = "0" + String(m);
+      m = "0".concat(String(m));
     } else {
       m = String(m);
     }
 
     if (s < 10) {
-      s = "0" + String(s);
+      s = "0".concat(String(s));
     } else {
       s = String(s);
     }
   }
 
-  document.querySelector("#count").textContent = m + " : " + s;
+  document.querySelector("#count").textContent = "".concat(m, " : ").concat(s);
 }
 
 function dec() {
@@ -155,19 +155,19 @@ function dec() {
     }
 
     if (m < 10) {
-      m = "0" + String(m);
+      m = "0".concat(String(m));
     } else {
       m = String(m);
     }
 
     if (s < 10) {
-      s = "0" + String(s);
+      s = "0".concat(String(s));
     } else {
       s = String(s);
     }
   }
 
-  document.querySelector("#count").textContent = m + " : " + s;
+  document.querySelector("#count").textContent = "".concat(m, " : ").concat(s);
 }
 
 function base() {
@@ -245,8 +245,8 @@ function start() {
     clearInterval(Timer);
     Timer = -1;
     info = "Timer is stopped ! ";
-    document.getElementById("bck").src = "2.gif";
-    document.getElementById('cat').style.display = 'none';
+    document.querySelector("#bck").src = "2.gif";
+    document.querySelector("#cat").style.display = "none";
     var element = React.createElement("div", null, React.createElement("div", {
       id: "timerWrapper"
     }, " ", React.createElement("span", {
@@ -279,8 +279,8 @@ function start() {
       audio.play();
     }, 1500);
     info = "Timer is running ! ";
-    document.getElementById('cat').style.display = 'block';
-    document.getElementById("bck").src = "1.gif";
+    document.querySelector("#cat").style.display = "block";
+    document.querySelector("#bck").src = "1.gif";
     Timer = setInterval(tick, 1000);
   }
 }
@@ -320,18 +320,18 @@ function showTime() {
   }
 
   if (m < 10) {
-    m = "0" + String(m);
+    m = "0".concat(String(m));
   } else {
     m = String(m);
   }
 
   if (s < 10) {
-    s = "0" + String(s);
+    s = "0".concat(String(s));
   } else {
     s = String(s);
   }
 
-  return m + " : " + s;
+  return "".concat(m, " : ").concat(s);
 } // Refresh the dom
 
 

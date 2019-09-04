@@ -171,9 +171,9 @@ function start() {
         Timer = -1;
 
         info = "Timer is stopped ! ";
-        
-        document.getElementById("bck").src = "2.gif";
-        document.getElementById( 'cat' ).style.display = 'none';
+
+        document.querySelector("#bck").src = "2.gif";
+        document.querySelector("#cat").style.display = "none";
 
         const element = (
             <div>
@@ -218,8 +218,8 @@ function start() {
         }, 1500);
 
         info = "Timer is running ! ";
-        document.getElementById( 'cat' ).style.display = 'block';
-        document.getElementById("bck").src = "1.gif";
+        document.querySelector("#cat").style.display = "block";
+        document.querySelector("#bck").src = "1.gif";
         Timer = setInterval(tick, 1000);
     }
 }
