@@ -120,52 +120,56 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 })({"index.js":[function(require,module,exports) {
 var m = 25;
 var s = 0;
-var clock = false;
 var playBtn = null;
 var ring = false;
-var info = "";
+var info = "Timer is stopped";
+var Timer = -1;
 
 function sum() {
-  s = Number(s);
-  m = Number(m);
-  m++;
+  if (Timer < 0) {
+    s = Number(s);
+    m = Number(m);
+    m++;
 
-  if (m < 10) {
-    m = "0".concat(String(m));
-  } else {
-    m = String(m);
+    if (m < 10) {
+      m = "0" + String(m);
+    } else {
+      m = String(m);
+    }
+
+    if (s < 10) {
+      s = "0" + String(s);
+    } else {
+      s = String(s);
+    }
   }
 
-  if (s < 10) {
-    s = "0".concat(String(s));
-  } else {
-    s = String(s);
-  }
-
-  document.querySelector("#count").textContent = "".concat(m, " : ").concat(s);
+  document.querySelector("#count").textContent = m + " : " + s;
 }
 
 function dec() {
   s = Number(s);
   m = Number(m);
 
-  if (m > 0) {
-    m--;
+  if (Timer < 0) {
+    if (m > 0) {
+      m--;
+    }
+
+    if (m < 10) {
+      m = "0" + String(m);
+    } else {
+      m = String(m);
+    }
+
+    if (s < 10) {
+      s = "0" + String(s);
+    } else {
+      s = String(s);
+    }
   }
 
-  if (m < 10) {
-    m = "0".concat(String(m));
-  } else {
-    m = String(m);
-  }
-
-  if (s < 10) {
-    s = "0".concat(String(s));
-  } else {
-    s = String(s);
-  }
-
-  document.querySelector("#count").textContent = "".concat(m, " : ").concat(s);
+  document.querySelector("#count").textContent = m + " : " + s;
 }
 
 function base() {
@@ -193,7 +197,7 @@ function base() {
     id: "resetBtn",
     onClick: reset
   }, "Reset"), React.createElement("br", null), React.createElement("button", {
-    className: "slideInLeft animated",
+    className: "slideIif( m <= 0)eft animated",
     id: "minusBtn",
     onClick: dec
   }, "Minus"), React.createElement("br", null)));
@@ -203,73 +207,79 @@ function base() {
 
 base();
 
-function reset() {
-  document.querySelector("#count").textContent = "25 : 00";
-  clearInterval(clock);
+function Timebreak() {
+  playBtn = document.querySelector("#play");
   s = 0;
-  m = 25;
-}
-
-function start() {
-  if (!clock) {
-    clock = setInterval(tick, 1000);
-    info = "Timer is running !";
-    var audio = new Audio("go.wav");
-    audio.play();
-
-    if (ring) {
-      setTimeout(function () {
-        var audio = new Audio("clock.wav");
-        audio.play();
-      }, 1500);
-    }
-
-    ring = true;
-    var playBtn = React.createElement("button", {
-      id: "play",
-      onClick: start
-    }, "Stop");
-  } else {
-    clearInterval(clock);
-    clock = false;
-    info = "Timer is stopped !";
-    var audio = new Audio("stop.wav");
-    audio.play();
-    var playBtn = React.createElement("button", {
-      id: "play",
-      onClick: start
-    }, "Play");
-  }
-
-  if (s < 10) {
-    s = "0".concat(s);
-  }
-
+  m = 5;
   var element = React.createElement("div", null, React.createElement("div", {
     id: "timerWrapper"
   }, React.createElement("span", {
     id: "count"
-  }, " ", m, " : ", s)), React.createElement("div", {
+  }, " ", m, " : 0", s)), React.createElement("div", {
     id: "wrapBtn"
-  }, React.createElement("p", {
-    id: "report"
-  }, info), React.createElement("button", {
+  }, React.createElement("button", {
+    className: "slideInLeft animated",
     id: "sumBtn",
     onClick: sum
-  }, "Plus"), React.createElement("br", null), playBtn, React.createElement("br", null), React.createElement("button", {
+  }, "Plus"), React.createElement("br", null), React.createElement("button", {
+    className: "slideInLeft animated",
+    id: "play",
+    onClick: start
+  }, "Play"), React.createElement("br", null), React.createElement("button", {
+    className: "slideInLeft animated",
     id: "resetBtn",
     onClick: reset
   }, "Reset"), React.createElement("br", null), React.createElement("button", {
+    className: "slideIif( m <= 0)eft animated",
     id: "minusBtn",
     onClick: dec
   }, "Minus"), React.createElement("br", null)));
   ReactDOM.render(element, document.querySelector("#root"));
 }
 
+function reset() {
+  clearInterval(Timer);
+  s = 0;
+  m = 25;
+  base();
+}
+
+function start() {
+  if (Timer > 0) {
+    clearInterval(Timer);
+    Timer = -1;
+    info = "Timer is stopped ! ";
+    var element = React.createElement("div", null, React.createElement("div", {
+      id: "timerWrapper"
+    }, " ", React.createElement("span", {
+      id: "count"
+    }, showTime())), React.createElement("div", {
+      id: "wrapBtn"
+    }, React.createElement("p", {
+      id: "report"
+    }, info), React.createElement("button", {
+      id: "sumBtnDisable",
+      onClick: sum
+    }, "Plus"), React.createElement("br", null), React.createElement("button", {
+      id: "play",
+      onClick: start
+    }, "Play"), React.createElement("br", null), React.createElement("button", {
+      id: "resetBtn",
+      onClick: reset
+    }, "Reset"), React.createElement("br", null), React.createElement("button", {
+      id: "minusBtnDisable",
+      onClick: dec
+    }, "Minus"), React.createElement("br", null)));
+    ReactDOM.render(element, document.querySelector("#root"));
+  } else {
+    info = "Timer is running ! ";
+    Timer = setInterval(tick, 1000);
+  }
+}
+
 function showTime() {
   m = Number(m);
   s = Number(s);
-  end = false;
 
   if (s > 0) {
     s--;
@@ -298,22 +308,22 @@ function showTime() {
   }
 
   if (s === 0 && m < 0) {
-    clearInterval(clock);
+    clearInterval(Timer);
   }
 
   if (m < 10) {
-    m = "0".concat(String(m));
+    m = "0" + String(m);
   } else {
     m = String(m);
   }
 
   if (s < 10) {
-    s = "0".concat(String(s));
+    s = "0" + String(s);
   } else {
     s = String(s);
   }
 
-  return "".concat(m, " : ").concat(s);
+  return m + " : " + s;
 } // Refresh the dom
 
 
@@ -326,15 +336,17 @@ function tick() {
     }, " Timer is over !"), React.createElement("button", {
       id: "restartBtn",
       onClick: base
-    }, "Restart"), React.createElement("br", null), React.createElement("button", {
+    }, "Restart"), React.createElement("br", null), React.createElement("br", null), React.createElement("button", {
       id: "breakBtn",
-      onClick: base
-    }, "Take a break")));
+      onClick: Timebreak
+    }, "Take a break"), React.createElement("br", null)));
     ReactDOM.render(element, document.querySelector("#root"));
   }
 
   if (m > 1 || s > 1) {
-    if (!clock) {
+    info = "Timer is running ! ";
+
+    if (Timer > 0) {
       var _element = React.createElement("div", null, React.createElement("div", {
         id: "timerWrapper"
       }, " ", React.createElement("span", {
@@ -343,7 +355,7 @@ function tick() {
         id: "wrapBtn"
       }, React.createElement("p", {
         id: "report"
-      }, " "), React.createElement("button", {
+      }, info), React.createElement("button", {
         id: "sumBtn",
         onClick: sum
       }, "Plus"), React.createElement("br", null), React.createElement("button", {
@@ -368,22 +380,25 @@ function tick() {
       }, React.createElement("p", {
         id: "report"
       }, info), React.createElement("button", {
-        id: "sumBtnDisable",
-        disable: true
+        id: "sumBtn",
+        onClick: sum
       }, "Plus"), React.createElement("br", null), React.createElement("button", {
         id: "play",
         onClick: start
-      }, "Stop"), React.createElement("br", null), React.createElement("button", {
+      }, "Play"), React.createElement("br", null), React.createElement("button", {
         id: "resetBtn",
         onClick: reset
       }, "Reset"), React.createElement("br", null), React.createElement("button", {
-        id: "minusBtnDisable"
+        id: "minusBtn",
+        onClick: dec
       }, "Minus"), React.createElement("br", null)));
 
       ReactDOM.render(_element2, document.querySelector("#root"));
     }
   }
 }
+
+;
 },{}],"../../.npm-global/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -412,7 +427,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "34763" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45385" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

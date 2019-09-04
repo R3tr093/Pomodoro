@@ -315,14 +315,14 @@ button{
  #wrapBtn2
  {
      position: absolute;
-     left: 65%;
+     left: 80%;
  }
 
  #report2
  {
      position: absolute;
      top: 30%;
-     left: -150%;
+     left: -370%;
      text-align: center;
      font-family: 'Ma Shan Zheng', cursive;
      font-size: 60px;
@@ -338,6 +338,12 @@ button{
     color: hotpink;
     height: auto;
     width: auto;
+    position: absolute;
+    left: 65%;
+    top: 90%;
+    
+
+ 
  }
 
  #restartBtn
@@ -349,6 +355,7 @@ button{
     color: hotpink;
     height: auto;
     width: auto;
+    
  }
 
 /*# sourceMappingURL=/Pomodoro.9ad09f98.css.map */
