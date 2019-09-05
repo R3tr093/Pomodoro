@@ -207,6 +207,7 @@ base();
 function Timebreak() {
   s = 0;
   m = 5;
+  document.querySelector("#cat").style.display = "none";
   var element = React.createElement("div", null, React.createElement("div", {
     id: "timerWrapper"
   }, React.createElement("span", {
@@ -344,6 +345,8 @@ function tick() {
     audio = new Audio("stop.wav");
     audio.play();
     document.querySelector("#bck").src = "2.gif";
+    clearInterval(Timer);
+    document.querySelector("#cat").style.display = "none";
     var element = React.createElement("div", null, React.createElement("div", {
       id: "wrapBtn2"
     }, React.createElement("p", {

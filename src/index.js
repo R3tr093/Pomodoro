@@ -110,7 +110,8 @@ base();
 function Timebreak() {
     s = 0;
     m = 5;
-
+    document.querySelector("#cat").style.display = "none";
+      
     const element = (
         <div>
             <div id={"timerWrapper"}>
@@ -281,9 +282,11 @@ function showTime() {
 function tick() {
     if (s <= 1 && m <= 1) {
         
-         audio = new Audio("stop.wav");
+        audio = new Audio("stop.wav");
         audio.play();
         document.querySelector("#bck").src = "2.gif";
+        clearInterval(Timer);
+        document.querySelector("#cat").style.display = "none";
         
         const element = (
             <div>
