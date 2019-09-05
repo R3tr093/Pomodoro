@@ -171,7 +171,8 @@ function start() {
         Timer = -1;
 
         info = "Timer is stopped ! ";
-
+        var audio = new Audio("stop.wav");
+        audio.play();
         document.querySelector("#bck").src = "2.gif";
         document.querySelector("#cat").style.display = "none";
 
@@ -256,6 +257,8 @@ function showTime() {
 
     if (s === 0 && m < 0) {
         clearInterval(Timer);
+        audio = new Audio("stop.wav");
+        audio.play();
     }
 
     if (m < 10) {

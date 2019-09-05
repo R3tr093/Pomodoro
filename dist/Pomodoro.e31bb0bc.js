@@ -130,19 +130,19 @@ function sum() {
     m++;
 
     if (m < 10) {
-      m = "0".concat(String(m));
+      m = "0" + String(m);
     } else {
       m = String(m);
     }
 
     if (s < 10) {
-      s = "0".concat(String(s));
+      s = "0" + String(s);
     } else {
       s = String(s);
     }
   }
 
-  document.querySelector("#count").textContent = "".concat(m, " : ").concat(s);
+  document.querySelector("#count").textContent = m + " : " + s;
 }
 
 function dec() {
@@ -155,19 +155,19 @@ function dec() {
     }
 
     if (m < 10) {
-      m = "0".concat(String(m));
+      m = "0" + String(m);
     } else {
       m = String(m);
     }
 
     if (s < 10) {
-      s = "0".concat(String(s));
+      s = "0" + String(s);
     } else {
       s = String(s);
     }
   }
 
-  document.querySelector("#count").textContent = "".concat(m, " : ").concat(s);
+  document.querySelector("#count").textContent = m + " : " + s;
 }
 
 function base() {
@@ -245,6 +245,8 @@ function start() {
     clearInterval(Timer);
     Timer = -1;
     info = "Timer is stopped ! ";
+    var audio = new Audio("stop.wav");
+    audio.play();
     document.querySelector("#bck").src = "2.gif";
     document.querySelector("#cat").style.display = "none";
     var element = React.createElement("div", null, React.createElement("div", {
@@ -317,21 +319,23 @@ function showTime() {
 
   if (s === 0 && m < 0) {
     clearInterval(Timer);
+    audio = new Audio("stop.wav");
+    audio.play();
   }
 
   if (m < 10) {
-    m = "0".concat(String(m));
+    m = "0" + String(m);
   } else {
     m = String(m);
   }
 
   if (s < 10) {
-    s = "0".concat(String(s));
+    s = "0" + String(s);
   } else {
     s = String(s);
   }
 
-  return "".concat(m, " : ").concat(s);
+  return m + " : " + s;
 } // Refresh the dom
 
 
@@ -433,7 +437,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "38041" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43359" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
