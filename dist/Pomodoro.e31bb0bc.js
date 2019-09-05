@@ -341,6 +341,9 @@ function showTime() {
 
 function tick() {
   if (s <= 1 && m <= 1) {
+    audio = new Audio("stop.wav");
+    audio.play();
+    document.querySelector("#bck").src = "2.gif";
     var element = React.createElement("div", null, React.createElement("div", {
       id: "wrapBtn2"
     }, React.createElement("p", {
